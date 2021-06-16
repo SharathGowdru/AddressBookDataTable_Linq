@@ -17,15 +17,15 @@ namespace AddressBookDB_Linq
             table.Columns.Add("City", typeof(string));
             table.Columns.Add("State", typeof(string));
             table.Columns.Add("Zip", typeof(int));
-            table.Columns.Add("PhoneNumber", typeof(int));
+            table.Columns.Add("PhoneNumber", typeof(Int32));
             table.Columns.Add("Email", typeof(string));
 
-            table.Rows.Add("Sharath", "Gowdru", "Channarayapatna", "Hassan", "Karnataka", "573116", "9916633661", "Sharath@gmail.com");
-            table.Rows.Add("Shashi", "kumar", "KGF", "Kolar", "Karnataka", "573243", "9874563214", "Shashi@gmail.com");
-            table.Rows.Add("Rohit", "Machale", "Madhigarabeedhi", "Pune", "Maharashtra", "535501", "8745632145", "rohit@gmail.com");
-            table.Rows.Add("Shivam", "Satpute", "Mahanagar", "Nagpur", "Maharashtra", "546489", "9874566332", "shivam@gmail.com");
-            table.Rows.Add("Jyosmita", "Das", "KeriColony", "SVm", "Assam", "546362", "9911225547", "jyosmita@gmail.com");
-            table.Rows.Add("Charan", "Ketha", "Rajmundry", "Hyderabad", "Andrapradesh", "125445", "3214569875", "charan@gmail.com");
+            table.Rows.Add("Sharath", "Gowdru", "Channarayapatna", "Hassan", "Karnataka", "573116", "831087735", "Sharath@gmail.com");
+            table.Rows.Add("Shashi", "kumar", "KGF", "Kolar", "Karnataka", "573243", "987456321", "Shashi@gmail.com");
+            table.Rows.Add("Rohit", "Machale", "Madhigarabeedhi", "Pune", "Maharashtra", "535501", "874563214", "rohit@gmail.com");
+            table.Rows.Add("Shivam", "Satpute", "Mahanagar", "Nagpur", "Maharashtra", "546489", "987456632", "shivam@gmail.com");
+            table.Rows.Add("Jyosmita", "Das", "KeriColony", "indiranagar", "Assam", "546362", "991122557", "jyosmita@gmail.com");
+            table.Rows.Add("Charan", "Ketha", "Rajmundry", "Hyderabad", "Andrapradesh", "125445", "321456875", "charan@gmail.com");
            
             return table;
         }
@@ -38,6 +38,19 @@ namespace AddressBookDB_Linq
                 + " " + "Zip:" + contact.Field<int>("Zip") + " " + "Phone Number:" + contact.Field<int>("PhoneNumber") + " " + "Email:" + contact.Field<string>("Email") + " ");
             }
         }
+        public void EditContacts(DataTable table)
+        {
+            var contacts = table.AsEnumerable().Where(x => x.Field<string>("FirstName") == "Shashi");
+            foreach (var contact in contacts)
+            {
+                contact.SetField("LastName", "Gowda");
+                contact.SetField("City", "Banglore");
+                contact.SetField("State", "Karnataka");
+            }
 
+            Console.WriteLine("The Contact is updated succesfully\n");
+            DisplayAddressBook(contacts.CopyToDataTable());
+        }
     }
+
 }

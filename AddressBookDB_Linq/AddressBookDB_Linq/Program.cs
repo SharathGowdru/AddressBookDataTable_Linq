@@ -9,7 +9,8 @@ namespace AddressBookDB_Linq
         {
             Linq_DataTable Linq_Table = new Linq_DataTable();
             DataTable dataTable = Linq_Table.CreateDataTable();
-            Linq_Table.DisplayAddressBook(dataTable);
+           // Linq_Table.DisplayAddressBook(dataTable);
+            Linq_Table.EditContacts(dataTable);
         }
     }
 }
