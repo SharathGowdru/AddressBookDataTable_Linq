@@ -72,6 +72,11 @@ namespace AddressBookDB_Linq
             }
 
         }
+        public void GetSizeOfAddressBookByCityOrState(DataTable table)
+        {
+            var contacts = table.Rows.Cast<DataRow>().GroupBy(x => x["State"].Equals("Karnataka")).Count();
+            Console.WriteLine(" : {0} ", contacts);
+        }
     }
 
 }
