@@ -77,6 +77,11 @@ namespace AddressBookDB_Linq
             var contacts = table.Rows.Cast<DataRow>().GroupBy(x => x["State"].Equals("Karnataka")).Count();
             Console.WriteLine(" : {0} ", contacts);
         }
+        public void SortContacts(DataTable table)
+        {
+            var contacts = table.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("FirstName"));
+            DisplayAddressBook(contacts.CopyToDataTable());
+        }
     }
 
 }
