@@ -61,6 +61,17 @@ namespace AddressBookDB_Linq
             Console.WriteLine("The Contact is deleted succesfully. Now the list contains following records \n");
             DisplayAddressBook(table);
         }
+        public void RetrieveContactByCityOrState(DataTable table)
+        {
+            var contacts = table.AsEnumerable().Where(x => x.Field<string>("State") == "Karnataka");
+            foreach (var contact in contacts)
+            {
+                Console.Write("First Name : " + contact.Field<string>("FirstName") + " " + "Last Name : " + contact.Field<string>("LastName") + " " + "Address : " + contact.Field<string>("Address") + " " + "City : " + contact.Field<string>("City") + " " + "State : " + contact.Field<string>("State")
+                     + " " + "Zip : " + contact.Field<int>("Zip") + " " + "Phone Number : " + contact.Field<Int32>("PhoneNumber") + " " + "Email : " + contact.Field<string>("Email") + " ");
+                Console.WriteLine("\n------------------------------------");
+            }
+
+        }
     }
 
 }
